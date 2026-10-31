@@ -1,0 +1,139 @@
+{
+  "n_eligible_encounters": 99343,
+  "n_positive_encounters": 11314,
+  "positive_rate": 0.11388824577474005,
+  "n_patients": 69990,
+  "n_train_encounters": 79549,
+  "n_test_encounters": 19794,
+  "n_train_patients": 55992,
+  "n_test_patients": 13998,
+  "n_train_positives": 9121,
+  "n_test_positives": 2193,
+  "models_train": {
+    "logistic_regression": {
+      "n": 79549,
+      "positives": 9121,
+      "prevalence": 0.11465888948949704,
+      "accuracy": 0.6715357829765302,
+      "precision": 0.1865462587541467,
+      "recall": 0.5548733691481197,
+      "f1": 0.27921988358941824,
+      "confusion_matrix": [
+        [
+          48359,
+          22069
+        ],
+        [
+          4060,
+          5061
+        ]
+      ],
+      "roc_auc": 0.6736153639569118
+    },
+    "random_forest": {
+      "n": 79549,
+      "positives": 9121,
+      "prevalence": 0.11465888948949704,
+      "accuracy": 0.6529434688053903,
+      "precision": 0.201369818757471,
+      "recall": 0.6833680517487117,
+      "f1": 0.31107451215251786,
+      "confusion_matrix": [
+        [
+          45708,
+          24720
+        ],
+        [
+          2888,
+          6233
+        ]
+      ],
+      "roc_auc": 0.7304330021946661
+    }
+  },
+  "models": {
+    "logistic_regression": {
+      "n": 19794,
+      "positives": 2193,
+      "prevalence": 0.11079114883297969,
+      "accuracy": 0.663736485803779,
+      "precision": 0.17504004659967962,
+      "recall": 0.5481076151390789,
+      "f1": 0.2653421633554084,
+      "confusion_matrix": [
+        [
+          11936,
+          5665
+        ],
+        [
+          991,
+          1202
+        ]
+      ],
+      "roc_auc": 0.6583912953376789,
+      "classification_report": "              precision    recall  f1-score   support\n\n           0      0.923     0.678     0.782     17601\n           1      0.175     0.548     0.265      2193\n\n    accuracy                          0.664     19794\n   macro avg      0.549     0.613     0.524     19794\nweighted avg      0.840     0.664     0.725     19794\n"
+    },
+    "random_forest": {
+      "n": 19794,
+      "positives": 2193,
+      "prevalence": 0.11079114883297969,
+      "accuracy": 0.6335253107002122,
+      "precision": 0.17140631086871835,
+      "recall": 0.6019151846785226,
+      "f1": 0.2668283808368708,
+      "confusion_matrix": [
+        [
+          11220,
+          6381
+        ],
+        [
+          873,
+          1320
+        ]
+      ],
+      "roc_auc": 0.6663934471036589,
+      "classification_report": "              precision    recall  f1-score   support\n\n           0      0.928     0.637     0.756     17601\n           1      0.171     0.602     0.267      2193\n\n    accuracy                          0.634     19794\n   macro avg      0.550     0.620     0.511     19794\nweighted avg      0.844     0.634     0.702     19794\n"
+    }
+  },
+  "chosen_model": "random_forest",
+  "decision_threshold": 0.5,
+  "threshold_note": "The predicted class uses the default 0.5 probability cutoff of the sklearn classifier (with class_weight='balanced'). This is not a clinical risk threshold.",
+  "target": {
+    "name": "readmission_30d",
+    "definition": "1 if UCI readmitted == '<30', else 0 for '>30' or 'NO'. The original readmitted column is the label source only.",
+    "prediction_time": "hospital discharge (features known during the stay)"
+  },
+  "limitations": {
+    "dataset": "UCI Diabetes 130-US Hospitals for Years 1999-2008",
+    "population": "Diabetes-related hospital encounters, not all hospital patients",
+    "n_eligible_encounters": 99343,
+    "n_positive_encounters": 11314,
+    "n_patients_total": 69990,
+    "excluded": "Expired/hospice discharge dispositions (cannot be readmitted)",
+    "split": "patient-level 80/20 stratified by any <30 readmission"
+  },
+  "features": [
+    "time_in_hospital",
+    "num_lab_procedures",
+    "num_procedures",
+    "num_medications",
+    "number_outpatient",
+    "number_emergency",
+    "number_inpatient",
+    "number_diagnoses",
+    "age",
+    "gender",
+    "race",
+    "admission_type",
+    "admission_source",
+    "discharge_disposition",
+    "payer_code",
+    "medical_specialty",
+    "insulin",
+    "change",
+    "diabetesMed",
+    "A1Cresult",
+    "max_glu_serum",
+    "diag_1_group"
+  ]
+}
