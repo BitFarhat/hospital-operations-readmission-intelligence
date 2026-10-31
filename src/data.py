@@ -190,7 +190,7 @@ def map_diag_group(code) -> str:
 
 def load_raw_encounters(path: Path | None = None) -> pd.DataFrame:
     _require_raw_file()
-    return pd.read_csv(path or RAW_ENCOUNTERS, low_memory=False)
+    return pd.read_csv(path or RAW_ENCOUNTERS, low_memory=True)
 
 
 def prepare_encounter_frame(
