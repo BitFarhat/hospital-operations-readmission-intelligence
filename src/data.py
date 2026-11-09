@@ -16,6 +16,7 @@ import csv
 from pathlib import Path
 
 import pandas as pd
+import streamlit as st
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT_DIR / "data"
@@ -188,9 +189,14 @@ def map_diag_group(code) -> str:
     return "Other"
 
 
+@st.cache_data
 def load_raw_encounters(path: Path | None = None) -> pd.DataFrame:
     _require_raw_file()
-    return pd.read_csv(path or RAW_ENCOUNTERS, low_memory=True)
+    df = pd.read_csv(path or RAW_ENCOUNTERS, low_memory=True)
+    for col in df.select_dtypes(include="object").columns:
+        if df[col].nunique() < 0.5 * len(df):
+            df[col] = df[col].astype("category")
+    return df
 
 
 def prepare_encounter_frame(
