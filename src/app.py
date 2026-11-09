@@ -857,7 +857,7 @@ def render_encounters_table(filters: dict, kpis: pd.Series) -> None:
 
     # CSV Download
     if not preview.empty:
-        csv_data = preview.to_csv(index=False).encode("utf-8")
+        csv_data = preview.to_csv(index=False)
         st.download_button(
             label="📥 Export Current View to CSV",
             data=csv_data,
